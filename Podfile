@@ -10,9 +10,9 @@ target 'MVVMRx' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SnapKit'
-#  pod 'Nuke'
   pod 'RxSwiftExt'
   pod 'R.swift', '~> 5.0.0.alpha.2'
   pod 'Kingfisher'
-
+  pod 'MXParallaxHeader'
+  
 end

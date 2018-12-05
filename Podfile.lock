@@ -9,6 +9,7 @@ PODS:
   - Moya/RxSwift (11.0.2):
     - Moya/Core
     - RxSwift (~> 4.0)
+  - MXParallaxHeader (0.6.1)
   - R.swift (5.0.0.alpha.2):
     - R.swift.Library (~> 5.0.0.alpha.2)
   - R.swift.Library (5.0.0.alpha.2)
@@ -26,6 +27,7 @@ DEPENDENCIES:
   - Kingfisher
   - Moya
   - Moya/RxSwift
+  - MXParallaxHeader
   - R.swift (~> 5.0.0.alpha.2)
   - RxCocoa
   - RxSwift
@@ -37,6 +39,7 @@ SPEC REPOS:
     - Alamofire
     - Kingfisher
     - Moya
+    - MXParallaxHeader
     - R.swift
     - R.swift.Library
     - Result
@@ -49,6 +52,7 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   Moya: a725035953bc1c0eb1be505ab903984501d82440
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   R.swift: 31fa1bd537fa81307815cc622122f33331f32174
   R.swift.Library: 3c21b823839bf5a6769dc7f96cb44479dab51b1b
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
@@ -57,6 +61,6 @@ SPEC CHECKSUMS:
   RxSwiftExt: 81afb48ab0602f503147417baeb3989d64c7687d
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: c89d84782b10166da47ed01facc2cfa040c9bea6
+PODFILE CHECKSUM: 1139d78cb656d46c7de079decec5ffca5203db21
 
 COCOAPODS: 1.5.3

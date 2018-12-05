@@ -31,6 +31,8 @@
 		A6EBED9F21B6F25400F42D58 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBED9E21B6F25400F42D58 /* AppCoordinator.swift */; };
 		A6EBEDA121B6F37200F42D58 /* CountriesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBEDA021B6F37200F42D58 /* CountriesCoordinator.swift */; };
 		A6EBEDA321B6F6FD00F42D58 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBEDA221B6F6FD00F42D58 /* Observable+extension.swift */; };
+		A6EBEDAC21B8477300F42D58 /* CountryDetailsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBEDAA21B8477300F42D58 /* CountryDetailsTableVC.swift */; };
+		A6EBEDAF21B8480A00F42D58 /* CountryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EBEDAE21B8480A00F42D58 /* CountryDetailsViewModel.swift */; };
 		D2E4E970271AE84089B20CE2 /* Pods_MVVMRx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77F91060E386191BAC47F253 /* Pods_MVVMRx.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +77,8 @@
 		A6EBED9E21B6F25400F42D58 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A6EBEDA021B6F37200F42D58 /* CountriesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCoordinator.swift; sourceTree = "<group>"; };
 		A6EBEDA221B6F6FD00F42D58 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
+		A6EBEDAA21B8477300F42D58 /* CountryDetailsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsTableVC.swift; sourceTree = "<group>"; };
+		A6EBEDAE21B8480A00F42D58 /* CountryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewModel.swift; sourceTree = "<group>"; };
 		FEC2B4B8F7A1296C48C8E9BD /* Pods-MVVMRx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMRx.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMRx/Pods-MVVMRx.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				A68667DD21B526BE0099ECD3 /* Countries  */,
+				A6EBEDA621B846F500F42D58 /* Country Details */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -308,6 +313,23 @@
 				A6EBEDA021B6F37200F42D58 /* CountriesCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		A6EBEDA621B846F500F42D58 /* Country Details */ = {
+			isa = PBXGroup;
+			children = (
+				A6EBEDA721B8471400F42D58 /* View */,
+			);
+			path = "Country Details";
+			sourceTree = "<group>";
+		};
+		A6EBEDA721B8471400F42D58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6EBEDAA21B8477300F42D58 /* CountryDetailsTableVC.swift */,
+				A6EBEDAE21B8480A00F42D58 /* CountryDetailsViewModel.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +467,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MVVMRx/Pods-MVVMRx-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -459,6 +482,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -508,12 +532,14 @@
 				A68667EA21B5B4060099ECD3 /* UIImageView+Reactive.swift in Sources */,
 				A6EBEDA121B6F37200F42D58 /* CountriesCoordinator.swift in Sources */,
 				A68667E821B5AD1C0099ECD3 /* EasyViews.swift in Sources */,
+				A6EBEDAC21B8477300F42D58 /* CountryDetailsTableVC.swift in Sources */,
 				A65C88CF21B3F01C0091BE6C /* AppDelegate.swift in Sources */,
 				A6EBED7B21B6717200F42D58 /* Constants.swift in Sources */,
 				A6EBED9D21B6F14100F42D58 /* BaseCoordinator.swift in Sources */,
 				A68667DB21B413650099ECD3 /* CountriesUseCase.swift in Sources */,
 				A68667EC21B5C65B0099ECD3 /* UITableView+Reusable.swift in Sources */,
 				A627971321B406E2003D8924 /* CountriesVC.swift in Sources */,
+				A6EBEDAF21B8480A00F42D58 /* CountryDetailsViewModel.swift in Sources */,
 				A68667D121B4119A0099ECD3 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

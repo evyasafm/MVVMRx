@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RxSwift
+import RxCocoa
 
 class CountriesVC: UIViewController {
     
@@ -43,6 +44,10 @@ fileprivate extension CountriesVC {
             .drive(countriesTableView.rx.items(cellIdentifier: CountryCell.reuseID, cellType: CountryCell.self)) { _, viewModel, cell in
                 cell.configure(with: viewModel)
             }
+            .disposed(by: disposeBag)
+        
+        countriesTableView.rx.modelSelected(CountryViewModeling.self)
+            .bind(to: viewModel.inputs.selectCountry)
             .disposed(by: disposeBag)
     }
     

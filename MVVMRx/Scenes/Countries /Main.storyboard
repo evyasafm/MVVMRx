@@ -48,7 +48,19 @@
                     <view key="view" contentMode="scaleToFill" id="bz5-pv-Dsg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YGx-DL-R2g">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HbW-6n-XMa" firstAttribute="bottom" secondItem="YGx-DL-R2g" secondAttribute="bottom" id="VWh-lh-Sp1"/>
+                            <constraint firstItem="HbW-6n-XMa" firstAttribute="trailing" secondItem="YGx-DL-R2g" secondAttribute="trailing" id="XPe-Zm-2He"/>
+                            <constraint firstItem="YGx-DL-R2g" firstAttribute="top" secondItem="HbW-6n-XMa" secondAttribute="top" id="XZ5-BK-iDQ"/>
+                            <constraint firstItem="YGx-DL-R2g" firstAttribute="leading" secondItem="HbW-6n-XMa" secondAttribute="leading" id="xev-Eb-9Sg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HbW-6n-XMa"/>
                     </view>
                 </viewController>

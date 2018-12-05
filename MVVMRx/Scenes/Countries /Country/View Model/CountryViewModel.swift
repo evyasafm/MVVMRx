@@ -19,6 +19,7 @@ protocol CountryViewModelingOutputs {
     var imageURL: Driver<URL?> { get }
     var name: Driver<String?> { get }
     var nativeName: Driver<String?> { get }
+    var displayCountryDetails: Observable<CountryDetailsViewModeling> { get }
 }
 
 protocol CountryViewModeling {
@@ -45,6 +46,10 @@ class CountryViewModel: CountryViewModeling, CountryViewModelingInputs, CountryV
     
     lazy var nativeName: Driver<String?> = {
         return Driver.just(countryModel.nativeName)
+    }()
+    
+    lazy var displayCountryDetails: Observable<CountryDetailsViewModeling> = {
+        return Observable.just(CountryDetailsViewModel(countryModel: countryModel))
     }()
     
     // Mark - Private Properties

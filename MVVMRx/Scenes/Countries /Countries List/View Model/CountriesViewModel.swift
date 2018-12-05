@@ -17,7 +17,7 @@ protocol CountriesViewModelingInputs {
 protocol CountriesViewModelingOutputs {
     var title: Driver<String> { get }
     var countriesViewModel: Driver<[CountryViewModeling]> { get }
-    var displayCountryDetails: Observable<CountryViewModeling> { get }
+    var displayCountryDetails: Observable<CountryDetailsViewModeling> { get }
 }
 
 protocol CountriesViewModeling {
@@ -44,8 +44,11 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
             .asDriver(onErrorJustReturn: [])
     }()
     
-    lazy var displayCountryDetails: Observable<CountryViewModeling> = {
-        return selectCountry.asObservable()
+    lazy var displayCountryDetails: Observable<CountryDetailsViewModeling> = {
+        return selectCountry
+            .flatMap({ (countryViewModeling) -> Observable<CountryDetailsViewModeling> in
+                return countryViewModeling.outputs.displayCountryDetails
+            })
     }()
     
     private let disposeBag = DisposeBag()

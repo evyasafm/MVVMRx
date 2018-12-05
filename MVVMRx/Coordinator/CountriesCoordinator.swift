@@ -22,11 +22,10 @@ class CountriesCoordinator: BaseCoordinator<Void> {
         let navigationVC = R.storyboard.main().instantiateInitialViewController() as! UINavigationController
         let countriesVC = navigationVC.viewControllers[0] as! CountriesVC
         countriesVC.viewModel = CountriesViewModel()
-        
         countriesVC.viewModel.outputs
             .displayCountryDetails
             .subscribe(onNext: { [weak self] in
-                self?.displayCountryDetailsScreen(navigationController: navigationVC, countryViewModeling: $0)
+                self?.displayCountryDetailsScreen(navigationController: navigationVC, countryDetailsViewModeling: $0)
             }).disposed(by: disposeBag)
         
         window?.rootViewController = navigationVC
@@ -38,8 +37,9 @@ class CountriesCoordinator: BaseCoordinator<Void> {
 
 fileprivate extension CountriesCoordinator {
     
-    func displayCountryDetailsScreen(navigationController: UINavigationController, countryViewModeling: CountryViewModeling) {
-        
+    func displayCountryDetailsScreen(navigationController: UINavigationController, countryDetailsViewModeling: CountryDetailsViewModeling) {
+        let countryDetailsTableVC = CountryDetailsTableVC(viewModel: countryDetailsViewModeling)
+        navigationController.pushViewController(countryDetailsTableVC, animated: true)
     }
     
 }
