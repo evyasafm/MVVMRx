@@ -7,3 +7,7 @@
 */
 
 "countries_title" = "Countries";
+"detail_region" = "Region";
+"detail_native" = "Native Name";
+"detail_population" = "Population";
+"detail_capital" = "Capital";

@@ -11,29 +11,29 @@ import RxSwift
 
 class CountryCell: UITableViewCell {
     
-    // Mark - Private Properties
-    
-    private var disposeBag = DisposeBag()
-    private var viewModel: CountryViewModeling!
-    
     // Mark - Internal Properties
     
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var nativeNameLabel: UILabel!
     
+    // Mark - Private Properties
+    
+    private var disposeBag = DisposeBag()
+    private var viewModel: CountryViewModeling!
+    
     // Mark - Internal Methods
     
     func configure(with viewModel: CountryViewModeling) {
         self.viewModel = viewModel
-        configureViews()
+        configureObservers()
     }
 
 }
 
-extension CountryCell {
+fileprivate extension CountryCell {
     
-    func configureViews() {
+    func configureObservers() {
         disposeBag = DisposeBag()
         
         viewModel.outputs

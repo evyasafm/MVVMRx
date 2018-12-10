@@ -38,8 +38,9 @@ class CountriesCoordinator: BaseCoordinator<Void> {
 fileprivate extension CountriesCoordinator {
     
     func displayCountryDetailsScreen(navigationController: UINavigationController, countryDetailsViewModeling: CountryDetailsViewModeling) {
-        let countryDetailsTableVC = CountryDetailsTableVC(viewModel: countryDetailsViewModeling)
-        navigationController.pushViewController(countryDetailsTableVC, animated: true)
+        let countryDetailsVC = R.storyboard.main.countryDetailsVC()!
+        countryDetailsVC.viewModel = countryDetailsViewModeling
+        navigationController.pushViewController(countryDetailsVC, animated: true)
     }
     
 }

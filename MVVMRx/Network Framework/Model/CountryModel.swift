@@ -13,5 +13,7 @@ struct CountryModel: Decodable {
     var name: String?
     var nativeName: String?
     var alpha2Code: String?
-    
+    var region: String?
+    var population: Int?
+    var capital: String?
 }

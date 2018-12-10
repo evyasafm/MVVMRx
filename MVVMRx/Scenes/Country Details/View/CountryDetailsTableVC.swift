@@ -11,28 +11,19 @@ import MXParallaxHeader
 import RxCocoa
 import RxSwift
 
-class CountryDetailsTableVC: UITableViewController {
+class CountryDetailsVC: UIViewController {
+    
+    @IBOutlet weak var countryTableView: UITableView!
+    
+    var viewModel: CountryDetailsViewModeling!
     
     private var disposeBag = DisposeBag()
-    
-    private let viewModel: CountryDetailsViewModeling
     
     private lazy var parallaxImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
-    
-    // Mark - Initializer
-    
-    init(viewModel: CountryDetailsViewModeling) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // Mark - view controller lifecycle
     
@@ -44,20 +35,29 @@ class CountryDetailsTableVC: UITableViewController {
     
 }
 
-fileprivate extension CountryDetailsTableVC {
+fileprivate extension CountryDetailsVC {
     
     func setupViews() {
-        tableView.parallaxHeader.view = parallaxImageView;
-        tableView.parallaxHeader.height = 150;
-        tableView.parallaxHeader.mode = MXParallaxHeaderMode.fill
-        tableView.parallaxHeader.minimumHeight = 20;
+        countryTableView.parallaxHeader.view = parallaxImageView;
+        countryTableView.parallaxHeader.height = 150;
+        countryTableView.parallaxHeader.mode = .fill
+        countryTableView.parallaxHeader.minimumHeight = 20;
+        [CountryDetailCell.self].forEach(countryTableView.register)
     }
     
     func setupObservers() {
+        disposeBag = DisposeBag()
+        
         viewModel.outputs
             .imageURL
             .drive(parallaxImageView.rx.imageUrl())
             .disposed(by: disposeBag)
+        
+        viewModel.outputs
+            .detailsViewModels
+            .drive(countryTableView.rx.items(cellIdentifier: CountryDetailCell.reuseID, cellType: CountryDetailCell.self)) { _, viewModel, cell in
+                cell.configure(with: viewModel)
+            }.disposed(by: disposeBag)
     }
     
 }
