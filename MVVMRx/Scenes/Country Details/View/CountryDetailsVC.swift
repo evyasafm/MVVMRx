@@ -33,20 +33,29 @@ class CountryDetailsVC: UIViewController {
         setupObservers()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        countryTableView.parallaxHeader.height = (countryTableView.parallaxHeader.view?.frame.width ?? 0) * 2 / 3
+    }
+    
 }
 
 fileprivate extension CountryDetailsVC {
     
     func setupViews() {
-        countryTableView.parallaxHeader.view = parallaxImageView;
-        countryTableView.parallaxHeader.height = 150;
+        countryTableView.parallaxHeader.view = parallaxImageView
         countryTableView.parallaxHeader.mode = .fill
-        countryTableView.parallaxHeader.minimumHeight = 20;
+        countryTableView.parallaxHeader.minimumHeight = 20
         [CountryDetailCell.self].forEach(countryTableView.register)
     }
     
     func setupObservers() {
         disposeBag = DisposeBag()
+        
+        viewModel.outputs
+            .title
+            .drive(rx.title)
+            .disposed(by: disposeBag)
         
         viewModel.outputs
             .imageURL
@@ -57,7 +66,8 @@ fileprivate extension CountryDetailsVC {
             .detailsViewModels
             .drive(countryTableView.rx.items(cellIdentifier: CountryDetailCell.reuseID, cellType: CountryDetailCell.self)) { _, viewModel, cell in
                 cell.configure(with: viewModel)
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
     
 }

@@ -35,8 +35,8 @@ class CountryViewModel: CountryViewModeling, CountryViewModelingInputs, CountryV
     var outputs: CountryViewModelingOutputs { return self }
     
     lazy var imageURL: Driver<URL?> = {
-        return Observable.just(countryModel.alpha2Code)
-            .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0 ?? "")) }
+        return Observable.just(countryModel.alpha3Code.unwrap.lowercased())
+            .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
             .asDriver(onErrorJustReturn: nil)
     }()
     

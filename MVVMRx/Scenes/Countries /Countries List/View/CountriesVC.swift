@@ -27,6 +27,13 @@ class CountriesVC: UIViewController {
         setupObservers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = countriesTableView.indexPathForSelectedRow {
+            countriesTableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    
 }
 
 fileprivate extension CountriesVC {

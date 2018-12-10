@@ -35,12 +35,12 @@ class CountryDetailsViewModel: CountryDetailsViewModeling, CountryDetailsViewMod
     var outputs: CountryDetailsViewModelingOutputs { return self }
     
     lazy var title: Driver<String> = {
-        return Driver.just("\(countryModel.name.unwrap)(\(countryModel.alpha2Code.unwrap))")
+        return Driver.just("\(countryModel.name.unwrap)(\(countryModel.alpha3Code.unwrap.lowercased()))")
     }()
     
     lazy var imageURL: Driver<URL?> = {
-        return Observable.just(countryModel.alpha2Code)
-            .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0.unwrap)) }
+        return Observable.just(countryModel.alpha3Code.unwrap.lowercased())
+            .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
             .asDriver(onErrorJustReturn: nil)
     }()
     
