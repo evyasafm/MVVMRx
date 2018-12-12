@@ -14,6 +14,7 @@ import RxCocoa
 class CountriesVC: UIViewController {
     
     @IBOutlet weak var countriesTableView: UITableView!
+    @IBOutlet weak var countriesSearchBar: UISearchBar!
     
     private let disposeBag = DisposeBag()
     
@@ -43,6 +44,11 @@ fileprivate extension CountriesVC {
     }
     
     func setupObservers() {
+        countriesSearchBar.rx.text
+            .asObservable()
+            .bind(to: viewModel.inputs.searchText)
+            .disposed(by: disposeBag)
+        
         viewModel.outputs.title
             .drive(navigationItem.rx.title)
             .disposed(by: disposeBag)

@@ -14,6 +14,7 @@ import RxSwift
 class CountryDetailsVC: UIViewController {
     
     @IBOutlet weak var countryTableView: UITableView!
+    @IBOutlet weak var countriesSearchBar: UISearchBar!
     
     var viewModel: CountryDetailsViewModeling!
     
@@ -43,10 +44,13 @@ class CountryDetailsVC: UIViewController {
 fileprivate extension CountryDetailsVC {
     
     func setupViews() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        // Country Table View
+        [CountryDetailCell.self].forEach(countryTableView.register)
         countryTableView.parallaxHeader.view = parallaxImageView
         countryTableView.parallaxHeader.mode = .fill
         countryTableView.parallaxHeader.minimumHeight = 20
-        [CountryDetailCell.self].forEach(countryTableView.register)
     }
     
     func setupObservers() {

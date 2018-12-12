@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 
 protocol CountriesViewModelingInputs {
+    var searchText: BehaviorRelay<String?> { get }
     var selectCountry: PublishRelay<CountryViewModeling> { get }
 }
 
@@ -30,6 +31,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     var inputs: CountriesViewModelingInputs { return self }
     var outputs: CountriesViewModelingOutputs { return self }
     
+    var searchText = BehaviorRelay<String?>(value: nil)
     var selectCountry = PublishRelay<CountryViewModeling>()
     
     lazy var title: Driver<String> = {
@@ -37,8 +39,11 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     }()
     
     lazy var countriesViewModel: Driver<[CountryViewModeling]> = {
-        return fetchCountries
-            .map { (countries) -> [CountryViewModeling] in
+        return Observable.combineLatest(searchText, fetchCountries)
+            .map { searchText, countries -> [CountryModel] in
+                return countries.filter { $0.name.unwrap.hasPrefix(searchText.unwrap) }
+            }
+            .map { countries -> [CountryViewModeling] in
                 return countries.map { CountryViewModel(countryModel: $0) }
             }
             .asDriver(onErrorJustReturn: [])
@@ -53,7 +58,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     
     private let disposeBag = DisposeBag()
     private let networkClient: NetworkClient
-    private let fetchCountries = BehaviorSubject<[CountryModel]>(value: [CountryModel]())
+    private let fetchCountries = BehaviorRelay<[CountryModel]>(value: [CountryModel]())
     
     init(networkClient: NetworkClient = NetworkClientHandler.shared) {
         self.networkClient = networkClient
