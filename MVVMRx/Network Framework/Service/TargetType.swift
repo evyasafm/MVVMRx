@@ -9,7 +9,7 @@
 import Moya
 
 public enum MyTargetType {
-    case fetch
+    case fetchCountries
 }
 
 extension MyTargetType: TargetType {
@@ -18,28 +18,28 @@ extension MyTargetType: TargetType {
     
     public var path: String {
         switch self {
-        case .fetch:
+        case .fetchCountries:
             return "rest/v2/all"
         }
     }
     
     public var method: Moya.Method {
         switch self {
-        case .fetch:
+        case .fetchCountries:
             return .get
         }
     }
     
     public var task: Task {
         switch self {
-        case .fetch:
+        case .fetchCountries:
             return .requestPlain
         }
     }
     
     public var validationType: ValidationType {
         switch self {
-        case .fetch:
+        case .fetchCountries:
             return .successCodes
         }
         
@@ -47,7 +47,7 @@ extension MyTargetType: TargetType {
     
     public var sampleData: Data {
         switch self {
-        case .fetch:
+        case .fetchCountries:
             return "[{}]".data(using: String.Encoding.utf8)!
         }
     }

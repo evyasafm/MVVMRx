@@ -30,7 +30,7 @@ class NetworkClientHandler: NetworkClient {
     
     func fetchCountries() -> Observable<[CountryModel]> {
         return provider.rx
-            .request(.fetch)
+            .request(.fetchCountries)
             .map([CountryModel].self)
             .asObservable()
     }
