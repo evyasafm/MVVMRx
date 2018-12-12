@@ -34,23 +34,16 @@ class CountryDetailsVC: UIViewController {
         setupObservers()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        countryTableView.parallaxHeader.height = (countryTableView.parallaxHeader.view?.frame.width ?? 0) * 2 / 3
-    }
-    
 }
 
 fileprivate extension CountryDetailsVC {
     
     func setupViews() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        // Country Table View
         [CountryDetailCell.self].forEach(countryTableView.register)
         countryTableView.parallaxHeader.view = parallaxImageView
         countryTableView.parallaxHeader.mode = .fill
         countryTableView.parallaxHeader.minimumHeight = 20
+        countryTableView.parallaxHeader.height = 300
     }
     
     func setupObservers() {
