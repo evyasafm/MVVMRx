@@ -57,11 +57,11 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     }()
     
     private let disposeBag = DisposeBag()
-    private let networkClient: NetworkClient
+    private let countriesUseCase: CountriesUseCase
     private let fetchCountries = BehaviorRelay<[CountryModel]>(value: [CountryModel]())
     
-    init(networkClient: NetworkClient = NetworkClientHandler.shared) {
-        self.networkClient = networkClient
+    init(countriesUseCase: CountriesUseCase = CountriesUseCaseHandler()) {
+        self.countriesUseCase = countriesUseCase
         setupObservers()
     }
 
@@ -70,7 +70,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
 fileprivate extension CountriesViewModel {
 
     func setupObservers() {
-        networkClient
+        countriesUseCase
             .fetchCountries()
             .bind(to: fetchCountries)
             .disposed(by: disposeBag)

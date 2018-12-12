@@ -78,7 +78,7 @@
 		A6EBED8921B6A09600F42D58 /* CountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		A6EBED8A21B6A09600F42D58 /* CountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryCell.xib; sourceTree = "<group>"; };
 		A6EBED8D21B6A4FD00F42D58 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A6EBED9121B6A69F00F42D58 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = R.generated.swift; path = ../../R.generated.swift; sourceTree = "<group>"; };
+		A6EBED9121B6A69F00F42D58 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		A6EBED9C21B6F14100F42D58 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		A6EBED9E21B6F25400F42D58 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A6EBEDA021B6F37200F42D58 /* CountriesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCoordinator.swift; sourceTree = "<group>"; };
@@ -135,6 +135,19 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
+		A633835821C15FA7007C8428 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A65C88D521B3F0230091BE6C /* Assets.xcassets */,
+				A6EBED8D21B6A4FD00F42D58 /* Main.storyboard */,
+				A65C88D721B3F0230091BE6C /* LaunchScreen.storyboard */,
+				A6EBED9121B6A69F00F42D58 /* R.generated.swift */,
+				A6EBED8621B69F1B00F42D58 /* Localizable.strings */,
+				A65C88DA21B3F0230091BE6C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A65C88C221B3F01C0091BE6C = {
 			isa = PBXGroup;
 			children = (
@@ -162,11 +175,9 @@
 				A6EBED7F21B6948F00F42D58 /* Application */,
 				A68667DC21B526B50099ECD3 /* Scenes */,
 				A68667E621B5ACF50099ECD3 /* Extensions */,
-				A6EBED7921B6715D00F42D58 /* Util */,
 				A68667D821B412F40099ECD3 /* Domain */,
 				A68667CE21B411780099ECD3 /* Network Framework */,
-				A6EBED8621B69F1B00F42D58 /* Localizable.strings */,
-				A65C88DA21B3F0230091BE6C /* Info.plist */,
+				A633835821C15FA7007C8428 /* Resources */,
 			);
 			path = MVVMRx;
 			sourceTree = "<group>";
@@ -234,9 +245,8 @@
 		A68667DD21B526BE0099ECD3 /* Countries  */ = {
 			isa = PBXGroup;
 			children = (
-				A6EBED9621B6D96A00F42D58 /* Country */,
-				A6EBED9521B6D95B00F42D58 /* Countries List */,
-				A6EBED8D21B6A4FD00F42D58 /* Main.storyboard */,
+				A6EBED9721B6D9DF00F42D58 /* View */,
+				A6EBED9821B6D9E800F42D58 /* View Model */,
 			);
 			path = "Countries ";
 			sourceTree = "<group>";
@@ -253,46 +263,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A6EBED7921B6715D00F42D58 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				A6EBED7A21B6717200F42D58 /* Constants.swift */,
-			);
-			path = Util;
-			sourceTree = "<group>";
-		};
 		A6EBED7F21B6948F00F42D58 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				A65C88CE21B3F01C0091BE6C /* AppDelegate.swift */,
-				A6EBED9121B6A69F00F42D58 /* R.generated.swift */,
-				A65C88D521B3F0230091BE6C /* Assets.xcassets */,
-				A65C88D721B3F0230091BE6C /* LaunchScreen.storyboard */,
+				A6EBED7A21B6717200F42D58 /* Constants.swift */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		A6EBED9521B6D95B00F42D58 /* Countries List */ = {
-			isa = PBXGroup;
-			children = (
-				A6EBED9A21B6DA0000F42D58 /* View */,
-				A6EBED9921B6D9FA00F42D58 /* View Model */,
-			);
-			path = "Countries List";
-			sourceTree = "<group>";
-		};
-		A6EBED9621B6D96A00F42D58 /* Country */ = {
-			isa = PBXGroup;
-			children = (
-				A6EBED9721B6D9DF00F42D58 /* View */,
-				A6EBED9821B6D9E800F42D58 /* View Model */,
-			);
-			path = Country;
 			sourceTree = "<group>";
 		};
 		A6EBED9721B6D9DF00F42D58 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A627971221B406E2003D8924 /* CountriesVC.swift */,
 				A6EBED8921B6A09600F42D58 /* CountryCell.swift */,
 				A6EBED8A21B6A09600F42D58 /* CountryCell.xib */,
 			);
@@ -303,24 +286,9 @@
 			isa = PBXGroup;
 			children = (
 				A68667E021B52B400099ECD3 /* CountryViewModel.swift */,
-			);
-			path = "View Model";
-			sourceTree = "<group>";
-		};
-		A6EBED9921B6D9FA00F42D58 /* View Model */ = {
-			isa = PBXGroup;
-			children = (
 				A68667DE21B527A50099ECD3 /* CountriesViewModel.swift */,
 			);
 			path = "View Model";
-			sourceTree = "<group>";
-		};
-		A6EBED9A21B6DA0000F42D58 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A627971221B406E2003D8924 /* CountriesVC.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		A6EBED9B21B6F13100F42D58 /* Coordinator */ = {
@@ -729,7 +697,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 356AKL6Q8P;
-				INFOPLIST_FILE = MVVMRx/Info.plist;
+				INFOPLIST_FILE = MVVMRx/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -748,7 +716,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 356AKL6Q8P;
-				INFOPLIST_FILE = MVVMRx/Info.plist;
+				INFOPLIST_FILE = MVVMRx/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
