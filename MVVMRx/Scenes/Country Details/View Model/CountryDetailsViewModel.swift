@@ -35,17 +35,17 @@ class CountryDetailsViewModel: CountryDetailsViewModeling, CountryDetailsViewMod
     var outputs: CountryDetailsViewModelingOutputs { return self }
     
     lazy var title: Driver<String> = {
-        return Driver.just("\(countryModel.name.unwrap)(\(countryModel.alpha3Code.unwrap.lowercased()))")
+        return Driver.just("\(country.name.unwrap)(\(country.alpha3Code.unwrap.lowercased()))")
     }()
     
     lazy var imageURL: Driver<URL?> = {
-        return Observable.just(countryModel.alpha3Code.unwrap.lowercased())
+        return Observable.just(country.alpha3Code.unwrap.lowercased())
             .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
             .asDriver(onErrorJustReturn: nil)
     }()
     
     lazy var detailsViewModels: Driver<[CountryDetailViewModeling]> = {
-       return Driver.just(countryModel)
+       return Driver.just(country)
         .map { [CountryDetailViewModel(title: R.string.localizable.detail_native(), detail: $0.nativeName.unwrap),
                 CountryDetailViewModel(title: R.string.localizable.detail_region(), detail: $0.region.unwrap),
                 CountryDetailViewModel(title: R.string.localizable.detail_capital(), detail: $0.capital.unwrap),
@@ -56,12 +56,12 @@ class CountryDetailsViewModel: CountryDetailsViewModeling, CountryDetailsViewMod
     
     // Mark - Private Properties
     
-    private let countryModel: CountryModel
+    private let country: Country
     
     // Mark - Initializer
     
-    init(countryModel: CountryModel) {
-        self.countryModel = countryModel
+    init(country: Country) {
+        self.country = country
     }
     
 }

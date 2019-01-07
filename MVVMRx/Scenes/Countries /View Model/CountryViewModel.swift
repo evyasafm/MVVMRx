@@ -35,31 +35,31 @@ class CountryViewModel: CountryViewModeling, CountryViewModelingInputs, CountryV
     var outputs: CountryViewModelingOutputs { return self }
     
     lazy var imageURL: Driver<URL?> = {
-        return Observable.just(countryModel.alpha3Code.unwrap.lowercased())
+        return Observable.just(country.alpha3Code.unwrap.lowercased())
             .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
             .asDriver(onErrorJustReturn: nil)
     }()
     
     lazy var name: Driver<String?> = {
-        return Driver.just(countryModel.name)
+        return Driver.just(country.name)
     }()
     
     lazy var nativeName: Driver<String?> = {
-        return Driver.just(countryModel.nativeName)
+        return Driver.just(country.nativeName)
     }()
     
     lazy var displayCountryDetails: Observable<CountryDetailsViewModeling> = {
-        return Observable.just(CountryDetailsViewModel(countryModel: countryModel))
+        return Observable.just(CountryDetailsViewModel(country: country))
     }()
     
     // Mark - Private Properties
     
-    private let countryModel: CountryModel
+    private let country: Country
     
     // Mark - Initializer
     
-    init(countryModel: CountryModel) {
-        self.countryModel = countryModel
+    init(countryModel: Country) {
+        self.country = countryModel
     }
     
 }

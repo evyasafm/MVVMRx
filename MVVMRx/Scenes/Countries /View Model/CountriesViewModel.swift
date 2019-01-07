@@ -27,6 +27,8 @@ protocol CountriesViewModeling {
 }
 
 class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, CountriesViewModelingOutputs {
+    
+    var test = BehaviorSubject<String?>(value: nil)
 
     var inputs: CountriesViewModelingInputs { return self }
     var outputs: CountriesViewModelingOutputs { return self }
@@ -40,7 +42,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     
     lazy var countriesViewModel: Driver<[CountryViewModeling]> = {
         return Observable.combineLatest(searchText, fetchCountries)
-            .map { searchText, countries -> [CountryModel] in
+            .map { searchText, countries -> [Country] in
                 return countries.filter { $0.name.unwrap.hasPrefix(searchText.unwrap) }
             }
             .map { countries -> [CountryViewModeling] in
@@ -58,7 +60,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
     
     private let disposeBag = DisposeBag()
     private let countriesUseCase: CountriesUseCase
-    private let fetchCountries = BehaviorRelay<[CountryModel]>(value: [CountryModel]())
+    private let fetchCountries = BehaviorRelay<[Country]>(value: [Country]())
     
     init(countriesUseCase: CountriesUseCase = CountriesUseCaseHandler()) {
         self.countriesUseCase = countriesUseCase
@@ -72,6 +74,7 @@ fileprivate extension CountriesViewModel {
     func setupObservers() {
         countriesUseCase
             .fetchCountries()
+            .asObservable()
             .bind(to: fetchCountries)
             .disposed(by: disposeBag)
     }

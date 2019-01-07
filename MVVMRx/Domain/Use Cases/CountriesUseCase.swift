@@ -11,7 +11,7 @@ import RxSwift
 
 protocol CountriesUseCase {
     
-    func fetchCountries() -> Observable<[CountryModel]>
+    func fetchCountries() -> Single<[Country]>
     
 }
 
@@ -23,7 +23,7 @@ class CountriesUseCaseHandler: CountriesUseCase {
         self.networkClient = networkClient
     }
     
-    func fetchCountries() -> Observable<[CountryModel]> {
+    func fetchCountries() -> Single<[Country]> {
         return networkClient.fetchCountries()
     }
     

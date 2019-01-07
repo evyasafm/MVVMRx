@@ -11,7 +11,7 @@ import RxSwift
 
 protocol NetworkClient {
     
-    func fetchCountries() -> Observable<[CountryModel]>
+    func fetchCountries() -> Single<[Country]>
     
 }
 
@@ -28,11 +28,11 @@ class NetworkClientHandler: NetworkClient {
     
     // MARK: NetworkClient Implementation
     
-    func fetchCountries() -> Observable<[CountryModel]> {
+    func fetchCountries() -> Single<[Country]> {
         return provider.rx
             .request(.fetchCountries)
             .map([CountryModel].self)
-            .asObservable()
+            .map { $0 }
     }
     
 }
