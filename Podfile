@@ -14,5 +14,16 @@ target 'MVVMRx' do
   pod 'R.swift', '~> 5.0.0.alpha.2'
   pod 'Kingfisher'
   pod 'MXParallaxHeader'
+  pod 'Hero'
   
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'Hero'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
 end

@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 import RxSwift
+import Hero
 
 class CountriesCoordinator: BaseCoordinator<Void> {
     
     private weak var window: UIWindow?
+    let heroHelper = HeroHelper()
     
     init(window: UIWindow) {
         self.window = window
@@ -20,8 +22,11 @@ class CountriesCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         let navigationVC = R.storyboard.main().instantiateInitialViewController() as! UINavigationController
+        heroHelper.configureHero(in: navigationVC)
         let countriesVC = navigationVC.viewControllers[0] as! CountriesVC
-        countriesVC.viewModel = CountriesViewModel()
+        countriesVC.hero.isEnabled = true
+        let extractedExpr: CountriesViewModel = CountriesViewModel()
+        countriesVC.viewModel = extractedExpr
         countriesVC.viewModel.outputs
             .displayCountryDetails
             .subscribe(onNext: { [weak self] in

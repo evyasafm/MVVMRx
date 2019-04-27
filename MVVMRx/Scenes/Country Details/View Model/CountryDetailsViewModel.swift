@@ -18,6 +18,7 @@ protocol CountryDetailsViewModelingOutputs {
     
     var title: Driver<String> { get }
     var imageURL: Driver<URL?> { get }
+    var name: Driver<String?> { get }
     var detailsViewModels: Driver<[CountryDetailViewModeling]> { get }
     
 }
@@ -42,6 +43,10 @@ class CountryDetailsViewModel: CountryDetailsViewModeling, CountryDetailsViewMod
         return Observable.just(country.alpha3Code.unwrap.lowercased())
             .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
             .asDriver(onErrorJustReturn: nil)
+    }()
+    
+    lazy var name: Driver<String?> = {
+        return Driver.just(country.name)
     }()
     
     lazy var detailsViewModels: Driver<[CountryDetailViewModeling]> = {

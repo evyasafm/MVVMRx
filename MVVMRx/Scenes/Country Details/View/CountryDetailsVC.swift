@@ -10,11 +10,11 @@ import UIKit
 import MXParallaxHeader
 import RxCocoa
 import RxSwift
+import Hero
 
 class CountryDetailsVC: UIViewController {
     
     @IBOutlet weak var countryTableView: UITableView!
-    @IBOutlet weak var countriesSearchBar: UISearchBar!
     
     var viewModel: CountryDetailsViewModeling!
     
@@ -39,7 +39,20 @@ class CountryDetailsVC: UIViewController {
 fileprivate extension CountryDetailsVC {
     
     func setupViews() {
+        setupHero()
+        setupTableView()
+        setupParallaxHeader()
+    }
+    
+    func setupHero() {
+        hero.isEnabled = true
+    }
+    
+    func setupTableView() {
         [CountryDetailCell.self].forEach(countryTableView.register)
+    }
+    
+    func setupParallaxHeader() {
         countryTableView.parallaxHeader.view = parallaxImageView
         countryTableView.parallaxHeader.mode = .fill
         countryTableView.parallaxHeader.minimumHeight = 20
@@ -62,9 +75,16 @@ fileprivate extension CountryDetailsVC {
         viewModel.outputs
             .detailsViewModels
             .drive(countryTableView.rx.items(cellIdentifier: CountryDetailCell.reuseID, cellType: CountryDetailCell.self)) { _, viewModel, cell in
+                cell.hero.modifiers = [.fade, .scale(3.0)]
                 cell.configure(with: viewModel)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.outputs.name
+            .drive(onNext: { [weak self] (name) in
+                self?.parallaxImageView.hero.id = name
+            })
+            .disposed(by: disposeBag)
     }
-    
+
 }
