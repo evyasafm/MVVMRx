@@ -16,9 +16,9 @@ protocol CountryViewModelingInputs {
 }
 
 protocol CountryViewModelingOutputs {
-    var imageURL: Driver<URL?> { get }
-    var name: Driver<String?> { get }
-    var nativeName: Driver<String?> { get }
+    var imageURL: Observable<URL?> { get }
+    var name: Observable<String?> { get }
+    var nativeName: Observable<String?> { get }
     var displayCountryDetails: Observable<CountryDetailsViewModeling> { get }
 }
 
@@ -36,18 +36,19 @@ class CountryViewModel: CountryViewModeling, CountryViewModelingInputs, CountryV
     
     // Mark - Outputs
     
-    lazy var imageURL: Driver<URL?> = {
+    lazy var imageURL: Observable<URL?> = {
         return Observable.just(country.alpha3Code.unwrap.lowercased())
-            .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
-            .asDriver(onErrorJustReturn: nil)
+            .map {
+                URL(string: String(format: Constants.URLPath.flagPathFormat, $0))
+            }
     }()
     
-    lazy var name: Driver<String?> = {
-        return Driver.just(country.name)
+    lazy var name: Observable<String?> = {
+        return Observable.just(country.name)
     }()
     
-    lazy var nativeName: Driver<String?> = {
-        return Driver.just(country.nativeName)
+    lazy var nativeName: Observable<String?> = {
+        return Observable.just(country.nativeName)
     }()
     
     lazy var displayCountryDetails: Observable<CountryDetailsViewModeling> = {

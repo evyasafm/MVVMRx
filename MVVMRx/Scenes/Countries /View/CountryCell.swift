@@ -37,19 +37,16 @@ fileprivate extension CountryCell {
     func configureObservers() {
         disposeBag = DisposeBag()
         
-        viewModel.outputs
-            .imageURL
-            .drive(iconImageView.rx.imageUrl())
+        viewModel.outputs.imageURL
+            .bind(to: iconImageView.rx.imageUrl())
             .disposed(by: disposeBag)
         
-        viewModel.outputs
-            .name
-            .drive(nameLabel.rx.text)
+        viewModel.outputs.name
+            .bind(to: nameLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel.outputs
-            .nativeName
-            .drive(nativeNameLabel.rx.text)
+        viewModel.outputs.nativeName
+            .bind(to: nativeNameLabel.rx.text)
             .disposed(by: disposeBag)
     }
     
