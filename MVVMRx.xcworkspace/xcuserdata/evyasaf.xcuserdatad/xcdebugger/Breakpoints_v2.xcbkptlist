@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MVVMRx/Scenes/Country Details/View/CountryDetailsVC.swift"
-            timestampString = "570977434.294839"
+            timestampString = "578043570.160996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "setupObservers()"
-            landmarkType = "7">
+            startingLineNumber = "85"
+            endingLineNumber = "85">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -16,8 +16,8 @@ protocol CountriesViewModelingInputs {
 }
 
 protocol CountriesViewModelingOutputs {
-    var title: Driver<String> { get }
-    var countriesViewModel: Driver<[CountryViewModeling]> { get }
+    var title: Observable<String?> { get }
+    var countriesViewModel: Observable<[CountryViewModeling]> { get }
     var displayCountryDetails: Observable<CountryDetailsViewModeling> { get }
 }
 
@@ -27,20 +27,22 @@ protocol CountriesViewModeling {
 }
 
 class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, CountriesViewModelingOutputs {
-    
-    var test = BehaviorSubject<String?>(value: nil)
 
     var inputs: CountriesViewModelingInputs { return self }
     var outputs: CountriesViewModelingOutputs { return self }
     
+    // Mark - Inputs
+    
     var searchText = BehaviorRelay<String?>(value: nil)
     var selectCountry = PublishRelay<CountryViewModeling>()
     
-    lazy var title: Driver<String> = {
-       return Driver.just(R.string.localizable.countries_title())
+    // Mark - Outputs
+    
+    lazy var title: Observable<String?> = {
+       return Observable.just(R.string.localizable.countries_title())
     }()
     
-    lazy var countriesViewModel: Driver<[CountryViewModeling]> = {
+    lazy var countriesViewModel: Observable<[CountryViewModeling]> = {
         return Observable.combineLatest(searchText, fetchCountries)
             .map { searchText, countries -> [Country] in
                 return countries.filter { $0.name.unwrap.hasPrefix(searchText.unwrap) }
@@ -48,7 +50,6 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
             .map { countries -> [CountryViewModeling] in
                 return countries.map { CountryViewModel(countryModel: $0) }
             }
-            .asDriver(onErrorJustReturn: [])
     }()
     
     lazy var displayCountryDetails: Observable<CountryDetailsViewModeling> = {
@@ -58,9 +59,13 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
             })
     }()
     
+    // Mark - Private members
+    
     private let disposeBag = DisposeBag()
     private let countriesUseCase: CountriesUseCase
     private let fetchCountries = BehaviorRelay<[Country]>(value: [Country]())
+    
+    // Mark - Initializer
     
     init(countriesUseCase: CountriesUseCase = CountriesUseCaseHandler()) {
         self.countriesUseCase = countriesUseCase
@@ -72,8 +77,7 @@ class CountriesViewModel: CountriesViewModeling, CountriesViewModelingInputs, Co
 fileprivate extension CountriesViewModel {
 
     func setupObservers() {
-        countriesUseCase
-            .fetchCountries()
+        countriesUseCase.fetchCountries()
             .asObservable()
             .bind(to: fetchCountries)
             .disposed(by: disposeBag)

@@ -51,13 +51,6 @@ fileprivate extension CountryCell {
             .nativeName
             .drive(nativeNameLabel.rx.text)
             .disposed(by: disposeBag)
-        
-//        viewModel.outputs
-//            .name
-//            .drive(onNext: { [weak self] name in
-//                self?.iconImageView.hero.id = name
-//            })
-//            .disposed(by: disposeBag)
     }
     
 }

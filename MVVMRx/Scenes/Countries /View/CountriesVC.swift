@@ -45,19 +45,17 @@ fileprivate extension CountriesVC {
     
     func setupObservers() {
         countriesSearchBar.rx.text
-            .asObservable()
             .bind(to: viewModel.inputs.searchText)
             .disposed(by: disposeBag)
         
         viewModel.outputs.title
-            .drive(navigationItem.rx.title)
+            .bind(to: navigationItem.rx.title)
             .disposed(by: disposeBag)
         
         viewModel.outputs.countriesViewModel
-            .drive(countriesTableView.rx.items(cellIdentifier: CountryCell.reuseID, cellType: CountryCell.self)) { _, viewModel, cell in
+            .bind(to: countriesTableView.rx.items(cellIdentifier: CountryCell.reuseID, cellType: CountryCell.self)) { _, viewModel, cell in
                 cell.configure(with: viewModel)
-            }
-            .disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
         
         countriesTableView.rx.modelSelected(CountryViewModeling.self)
             .bind(to: viewModel.inputs.selectCountry)

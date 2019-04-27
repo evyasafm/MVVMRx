@@ -39,13 +39,8 @@ class CountryDetailsVC: UIViewController {
 fileprivate extension CountryDetailsVC {
     
     func setupViews() {
-        setupHero()
         setupTableView()
         setupParallaxHeader()
-    }
-    
-    func setupHero() {
-        hero.isEnabled = true
     }
     
     func setupTableView() {
@@ -62,20 +57,16 @@ fileprivate extension CountryDetailsVC {
     func setupObservers() {
         disposeBag = DisposeBag()
         
-        viewModel.outputs
-            .title
+        viewModel.outputs.title
             .drive(rx.title)
             .disposed(by: disposeBag)
         
-        viewModel.outputs
-            .imageURL
+        viewModel.outputs.imageURL
             .drive(parallaxImageView.rx.imageUrl())
             .disposed(by: disposeBag)
         
-        viewModel.outputs
-            .detailsViewModels
+        viewModel.outputs.detailsViewModels
             .drive(countryTableView.rx.items(cellIdentifier: CountryDetailCell.reuseID, cellType: CountryDetailCell.self)) { _, viewModel, cell in
-                cell.hero.modifiers = [.fade, .scale(3.0)]
                 cell.configure(with: viewModel)
             }
             .disposed(by: disposeBag)

@@ -34,6 +34,8 @@ class CountryViewModel: CountryViewModeling, CountryViewModelingInputs, CountryV
     var inputs: CountryViewModelingInputs { return self }
     var outputs: CountryViewModelingOutputs { return self }
     
+    // Mark - Outputs
+    
     lazy var imageURL: Driver<URL?> = {
         return Observable.just(country.alpha3Code.unwrap.lowercased())
             .map { URL(string: String(format: Constants.URLPath.flagPathFormat, $0)) }
