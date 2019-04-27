@@ -41,12 +41,6 @@ fileprivate extension CountriesVC {
     
     func setupViews() {
         [CountryCell.self].forEach(countriesTableView.register)
-        let arr = NSMutableArray()
-        arr.insert(CGPoint(), at: 0)
-        arr.insert(UIViewController(), at: 0)
-        arr.insert(NSURLRequest(), at: 0)
-        arr.insert(UIColor(), at: 0)
-        print("arr=\(arr)")
     }
     
     func setupObservers() {
